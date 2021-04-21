@@ -16,11 +16,11 @@ WhatsApp Toolkit App, a specially designed toolkit for WhatsApp app brings you a
 7. Video splitter for WhatsApp status,
 WhatsApp auto forwarder, generate chat report, sticker maker, WhatsApp status maker, gif status maker, photo editor to create status and quick Reply.
 
-WhatsTool app acts as a perfect tool for WhatsApp, by providing top features to enhance user experience with improved security & more interactive messaging experience as follows:
+WhatsApp Toolkit app acts as a perfect tool for WhatsApp, by providing top features to enhance user experience with improved security & more interactive messaging experience as follows:
 
 WhatsApp Video Status Downloader - This amazing feature lets users save and download the videos or images from other user’s WhatsApp status. With the help of inbuilt video and photo browser and editing features, you can create the status in the way you want.
 
-Direct Chat with an unsaved number: WhatsTool enables users to message on WhatsApp to a new number, search profile in WhatsApp and check the details of new/missed call numbers by searching the number directly without saving their contact.
+Direct Chat with an unsaved number: WhatsApp Toolkit enables users to message on WhatsApp to a new number, search profile in WhatsApp and check the details of new/missed call numbers by searching the number directly without saving their contact.
 
 Bulk WhatsApp messaging can help business and users who are looking to send important message to their contacts by reducing the time. It is like Unlimited automatic forwarding
 
