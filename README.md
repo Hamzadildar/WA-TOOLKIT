@@ -4,7 +4,6 @@
 - This project is licensed under the MIT License - see the [LICENSE] file for details
 
 
-
 A new Flutter application.        
 
 WhatsApp Toolkit App, a specially designed toolkit for WhatsApp app brings you a numerous exciting features of
