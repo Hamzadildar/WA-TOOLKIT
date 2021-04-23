@@ -551,7 +551,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                           child: Text('OK'),
                                         ),
                                       ];
-                                    },
                                     starRatingOptions: StarRatingOptions(),
                                   );
                                 },
