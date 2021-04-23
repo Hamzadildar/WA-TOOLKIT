@@ -269,7 +269,7 @@ class _TextRepeaterState extends State<TextRepeater> {
                         ),
                       ),
                       CheckboxListTile(
-                        title: Text("new Line"),
+                        title: Text("new  vdvLine"),
                         value: checkedValue,
                         onChanged: (newValue) {
                           setState(() {
