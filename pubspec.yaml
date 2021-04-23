@@ -30,18 +30,19 @@ dependencies:
   cupertino_icons: ^1.0.0
   country_code_picker: ^2.0.1
   url_launcher: ^6.0.3
-  share: ^0.6.4+3
   permission_handler: ^6.1.3
   flutter_staggered_grid_view: ^0.3.0
   path_provider: ^2.0.1
   image_gallery_saver: ^1.5.0
   flutter_html: any
   flutter_fab_dialer: ^0.1.1
-  thumbnails: ^1.0.1
   chewie: ^1.0.0
   video_player: ^2.0.0
-  fluttercontactpicker: any
+  fluttercontactpicker: ^4.4.0
   clipboard: ^0.1.3
+  progressive_image: ^1.0.1
+  share: ^2.0.1
+  rate_my_app: ^1.1.0+1
 
 
 

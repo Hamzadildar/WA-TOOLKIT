@@ -34,72 +34,76 @@ class ImageScreenState extends State<ImageScreen> {
         ],
       );
     } else {
-      final imageList = _photoDir
-          .listSync()
-          .map((item) => item.path)
-          .where((item) => item.endsWith('.jpg') || item.endsWith('.png'))
-          .toList(growable: false);
-      if (imageList.length > 0) {
-        return Container(
-          margin: const EdgeInsets.only(left: 1, right: 1),
-          child: GridView.builder(
-            scrollDirection: Axis.vertical,
-            itemCount: imageList.length,
-            gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: 100,
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 10,
-            ),
-            itemBuilder: (context, index) {
-              final imgPath = imageList[index];
-              return Material(
-                elevation: 8.0,
-                borderRadius: const BorderRadius.all(Radius.circular(8)),
-                child: InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ViewPhotos(
-                          imgPath: imgPath,
+      try {
+        final imageList = _photoDir
+            .listSync()
+            .map((item) => item.path)
+            .where((item) => item.endsWith('.jpg') || item.endsWith('.png'))
+            .toList(growable: false);
+        if (imageList.length > 0) {
+          return Container(
+            margin: const EdgeInsets.only(left: 1, right: 1),
+            child: GridView.builder(
+              scrollDirection: Axis.vertical,
+              itemCount: imageList.length,
+              gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                maxCrossAxisExtent: 100,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+              ),
+              itemBuilder: (context, index) {
+                final imgPath = imageList[index];
+                return Material(
+                  elevation: 8.0,
+                  borderRadius: const BorderRadius.all(Radius.circular(8)),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ViewPhotos(
+                            imgPath: imgPath,
+                          ),
                         ),
-                      ),
-                    );
-                  },
-                  child: Hero(
+                      );
+                    },
+                    child: Hero(
                       tag: imgPath,
                       child: Image.file(
                         File(imgPath),
                         fit: BoxFit.cover,
-                      )),
-                ),
-              );
-            },
-          ),
-        );
-      } else {
-        return Scaffold(
-          body: Center(
-            child: Container(
-                padding: const EdgeInsets.only(bottom: 60.0),
-                child: const Text(
-                  'Sorry, No Image Found!',
-                  style: TextStyle(fontSize: 18.0),
-                )),
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+          );
+        } else {
+          return Scaffold(
+            body: Center(
+              child: Container(
+                  padding: const EdgeInsets.only(bottom: 60.0),
+                  child: const Text(
+                    'Sorry, No Image Found!',
+                    style: TextStyle(fontSize: 18.0),
+                  )),
+            ),
+          );
+        }
+      } catch (exp) {
+        return Container(
+          child: Center(
+            child: Text(
+              'Please Allow the Storage Access...',
+              style: TextStyle(
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
         );
       }
     }
   }
 }
-
-//
-// StaggeredGridView.countBuilder(
-// itemCount: imageList.length,
-// crossAxisCount: 4,
-//
-// staggeredTileBuilder: (i) =>
-// StaggeredTile.count(2, i.isEven ? 2 : 3),
-// mainAxisSpacing: 8.0,
-// crossAxisSpacing: 8.0,
-// ),

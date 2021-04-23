@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+//import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:tech_vision/screens/home%20screen.dart';
 import 'package:flutter/services.dart';
@@ -10,9 +11,16 @@ import 'package:tech_vision/screens/splash.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  // final initFuture = MobileAds.instance.initialize();
+  // final adState = AdState(initFuture);
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
-
+  // runApp(
+  //   Provider.value(
+  //     value: adState,
+  //     builder: (context, child) => MyApp(),
+  //   ),
+  // );
   runApp(MyApp());
 }
 
@@ -58,6 +66,19 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
+    super.initState();
+    Future<void> storagePremission() async {
+      if (await Permission.storage.request().isGranted) {
+        // Either the permission was already granted before or the user just granted it.
+      }
+      // You can request multiple permissions at once.
+      Map<Permission, PermissionStatus> statuses = await [
+        Permission.storage,
+      ].request();
+      print(statuses[Permission.storage]);
+    }
+
+    storagePremission();
     // super.initState();
     // _storagePermissionChecker = (() async {
     //   int storagePermissionCheckInt;
@@ -83,20 +104,6 @@ class _MyAppState extends State<MyApp> {
     //
     //   return finalPermission;
     // })();
-
-    super.initState();
-    Future<int> storagePremission() async {
-      if (await Permission.storage.request().isGranted) {
-        // Either the permission was already granted before or the user just granted it.
-      }
-      // You can request multiple permissions at once.
-      Map<Permission, PermissionStatus> statuses = await [
-        Permission.storage,
-      ].request();
-      print(statuses[Permission.storage]);
-    }
-
-    storagePremission();
   }
 
   @override

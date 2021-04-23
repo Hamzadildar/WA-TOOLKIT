@@ -1,7 +1,7 @@
-import 'package:fluttercontactpicker/fluttercontactpicker.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:permission_handler/permission_handler.dart';
+import 'package:rate_my_app/rate_my_app.dart';
+import 'package:share/share.dart';
 import 'package:tech_vision/screens/status_Saver/imageScreen.dart';
 import 'package:tech_vision/screens/status_Saver/seeAll.dart';
 import 'package:tech_vision/screens/status_Saver/videoScreen.dart';
@@ -15,7 +15,6 @@ class HomeScreen extends StatefulWidget {
   _HomeScreenState createState() => _HomeScreenState();
 }
 
-PhoneNumber no;
 String whatsAppNumber;
 String code = '+1'.toString();
 
@@ -26,12 +25,17 @@ void _launchWatsapp({@required number, @required msg}) async {
 }
 
 String phoneNumber = "";
-void _onCountryChange(CountryCode countryCode) {
-  phoneNumber = countryCode.toString();
-  print("New Country selected: " + countryCode.toString());
-}
 
 class _HomeScreenState extends State<HomeScreen> {
+  RateMyApp _rateApp = RateMyApp(
+    preferencesPrefix: 'rateApp_',
+    minDays: 3,
+    minLaunches: 5,
+    remindDays: 2,
+    remindLaunches: 4,
+    // googlePlayIdentifier: '',
+    // appStoreIdentifier: '',
+  );
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -146,7 +150,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ),
                             SizedBox(
-                              width: 10,
+                              width: MediaQuery.of(context).size.width / 50,
                             ),
                             FloatingActionButton(
                               elevation: 0.0,
@@ -518,7 +522,39 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Column(
                             children: [
                               InkWell(
-                                onTap: () {},
+                                onTap: () {
+                                  _rateApp.showStarRateDialog(
+                                    context,
+                                    title: 'Enjoying using SaveIt',
+                                    message:
+                                        'If you like this app, please rate it !\nIt really helps us and it shouldn\'t take you more than one minute.',
+                                    dialogStyle: DialogStyle(
+                                      titleAlign: TextAlign.center,
+                                      messagePadding:
+                                          EdgeInsets.only(bottom: 20.0),
+                                    ),
+                                    actionsBuilder: (context, stars) {
+                                      return [
+                                        FlatButton(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                          child: Text('LATER'),
+                                        ),
+                                        FlatButton(
+                                          onPressed: () {
+                                            if (stars != 0.0) {
+                                              _rateApp.save().then((value) =>
+                                                  Navigator.pop(context));
+                                            } else {}
+                                          },
+                                          child: Text('OK'),
+                                        ),
+                                      ];
+                                    },
+                                    starRatingOptions: StarRatingOptions(),
+                                  );
+                                },
                                 child: Container(
                                   height:
                                       MediaQuery.of(context).size.width / 4.5,
@@ -545,7 +581,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 'Rate Us',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 18.0,
+                                  fontSize: 15.0,
                                   color: Color(0xff02544b),
                                 ),
                               ),
@@ -565,7 +601,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Column(
                             children: [
                               InkWell(
-                                onTap: () {},
+                                onTap: () {
+                                  setState(() {
+                                    Share.share(
+                                        'Download Stories,Videos,Status and much more in One Click using SaveIt App.\n Checkout the Link below also share it with your Friends.\n https://bit.ly/39y0mar');
+                                  });
+                                },
                                 child: Container(
                                   height:
                                       MediaQuery.of(context).size.width / 4.5,
@@ -592,7 +633,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 'Share App',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 18.0,
+                                  fontSize: 15.0,
                                   color: Color(0xff02544b),
                                 ),
                               ),
@@ -639,7 +680,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 'More Apps',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 18.0,
+                                  fontSize: 15.0,
                                   color: Color(0xff02544b),
                                 ),
                               ),
@@ -659,7 +700,15 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Column(
                             children: [
                               InkWell(
-                                onTap: () {},
+                                onTap: () {
+                                  String _url = 'https://hamzadildar.me';
+                                  _launchURL() async => await canLaunch(_url)
+                                      ? await launch(_url)
+                                      : throw 'Could not launch $_url';
+                                  setState(() {
+                                    _launchURL();
+                                  });
+                                },
                                 child: Container(
                                   height:
                                       MediaQuery.of(context).size.width / 4.5,
@@ -686,7 +735,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 'info',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 18.0,
+                                  fontSize: 15.0,
                                   color: Color(0xff02544b),
                                 ),
                               ),

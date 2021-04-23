@@ -31,27 +31,46 @@ class _SeeAllStatusState extends State<SeeAllStatus>
       appBar: AppBar(
         backgroundColor: Color(0xff02544b),
         title: Text('WhatsApp Status'),
+        bottom: TabBar(
+          isScrollable: true,
+          labelStyle: TextStyle(fontSize: 20.0),
+          controller: _nestedTabController,
+          indicatorWeight: 5.0,
+          indicatorColor: Colors.white,
+          labelColor: Colors.white,
+          unselectedLabelColor: Colors.black,
+          tabs: <Widget>[
+            Tab(
+              child: Row(
+                children: [
+                  Icon(Icons.image),
+                  SizedBox(
+                    width: 10.0,
+                  ),
+                  Text('Images'),
+                ],
+              ),
+              //  text: "Images",
+            ),
+            Tab(
+              child: Row(
+                children: [
+                  Icon(Icons.video_label),
+                  SizedBox(
+                    width: 10.0,
+                  ),
+                  Text('Videos'),
+                ],
+              ),
+              // text: "Videos",
+            ),
+          ],
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
-            TabBar(
-              isScrollable: true,
-              labelStyle: TextStyle(fontSize: 20.0),
-              controller: _nestedTabController,
-              indicatorColor: Colors.teal,
-              labelColor: Colors.teal,
-              unselectedLabelColor: Colors.black54,
-              tabs: <Widget>[
-                Tab(
-                  text: "Images",
-                ),
-                Tab(
-                  text: "Videos",
-                ),
-              ],
-            ),
             Container(
               height: MediaQuery.of(context).size.height * 0.70,
               margin: EdgeInsets.only(left: 16.0, right: 16.0),
