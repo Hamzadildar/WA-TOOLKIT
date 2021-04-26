@@ -1,3 +1,5 @@
+import 'package:flutter_native_admob/flutter_native_admob.dart';
+import 'package:flutter_native_admob/native_admob_controller.dart';
 import 'package:fluttercontactpicker/fluttercontactpicker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +17,24 @@ class _BulkSMSState extends State<BulkSMS> {
   String msg;
   int textSize = 0;
   List<String> recipents = [];
+
+  static const _adUnitID = "ca-app-pub-3940256099942544/8135179316";
+
+  final _nativeAdController = NativeAdmobController();
+
+  Widget adsContainer() {
+    return Container(
+      //You Can Set Container Height
+      height: 200,
+      child: NativeAdmob(
+        // Your ad unit id
+        adUnitID: _adUnitID,
+        controller: _nativeAdController,
+        type: NativeAdmobType.full,
+        error: CupertinoActivityIndicator(),
+      ),
+    );
+  }
 
   void _bulksms({@required msg, @required String recipents}) async {
     String url = "whatsapp://send?phone=$recipents&text=$msg";
@@ -78,7 +98,7 @@ class _BulkSMSState extends State<BulkSMS> {
             child: Column(
               children: [
                 Container(
-                  height: MediaQuery.of(context).size.height / 1.5,
+                  height: MediaQuery.of(context).size.height / 1.3,
                   color: Color(0xffece1d4),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -181,42 +201,47 @@ class _BulkSMSState extends State<BulkSMS> {
                           },
                         ),
                       ),
+                      Container(
+                        margin: EdgeInsets.only(left: 100, top: 40, right: 100),
+                        child: RaisedButton(
+                          elevation: 10,
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.send,
+                                color: Colors.green,
+                                size: 30.0,
+                              ),
+                              SizedBox(
+                                width: 15,
+                              ),
+                              Text(
+                                "Send",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                ),
+                              )
+                            ],
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          onPressed: () {
+                            for (int i = 0; i < recipents.length; i++) {
+                              String no = recipents[i];
+                              print(recipents[i]);
+                              _bulksms(msg: msg, recipents: no);
+                            }
+                          },
+                        ),
+                      ),
                     ],
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(left: 100, top: 40, right: 100),
-                  child: RaisedButton(
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.send,
-                          color: Colors.green,
-                          size: 30.0,
-                        ),
-                        SizedBox(
-                          width: 15,
-                        ),
-                        Text(
-                          "Send",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                          ),
-                        )
-                      ],
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    onPressed: () {
-                      for (int i = 0; i < recipents.length; i++) {
-                        String no = recipents[i];
-                        print(recipents[i]);
-                        _bulksms(msg: msg, recipents: no);
-                      }
-                    },
-                  ),
+                  margin: EdgeInsets.only(bottom: 20.0),
+                  child: adsContainer(),
                 ),
               ],
             ),

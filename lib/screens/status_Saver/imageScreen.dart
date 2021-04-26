@@ -80,14 +80,16 @@ class ImageScreenState extends State<ImageScreen> {
             ),
           );
         } else {
-          return Scaffold(
-            body: Center(
-              child: Container(
-                  padding: const EdgeInsets.only(bottom: 60.0),
-                  child: const Text(
-                    'Sorry, No Image Found!',
-                    style: TextStyle(fontSize: 18.0),
-                  )),
+          return SafeArea(
+            child: Scaffold(
+              body: Center(
+                child: Container(
+                    padding: const EdgeInsets.only(bottom: 60.0),
+                    child: const Text(
+                      'Sorry, No Image Found!',
+                      style: TextStyle(fontSize: 18.0),
+                    )),
+              ),
             ),
           );
         }

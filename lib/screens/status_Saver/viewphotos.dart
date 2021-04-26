@@ -141,35 +141,38 @@ class _ViewPhotosState extends State<ViewPhotos> {
           true),
     ];
 
-    return Scaffold(
-      backgroundColor: Colors.black12,
-      appBar: AppBar(
-        elevation: 0.0,
-        backgroundColor: Colors.transparent,
-        leading: IconButton(
-          color: Colors.indigo,
-          icon: const Icon(
-            Icons.arrow_back,
-            color: Colors.white,
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.black12,
+        appBar: AppBar(
+          elevation: 0.0,
+          backgroundColor: Colors.transparent,
+          leading: IconButton(
+            color: Colors.indigo,
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.white,
+            ),
+            onPressed: () => Navigator.of(context).pop(),
           ),
-          onPressed: () => Navigator.of(context).pop(),
         ),
-      ),
-      body: SizedBox.expand(
-        child: Stack(
-          children: <Widget>[
-            Align(
-              alignment: Alignment.center,
-              child: Hero(
-                tag: widget.imgPath,
-                child: Image.file(
-                  File(widget.imgPath),
-                  fit: BoxFit.cover,
+        body: SizedBox.expand(
+          child: Stack(
+            children: <Widget>[
+              Align(
+                alignment: Alignment.center,
+                child: Hero(
+                  tag: widget.imgPath,
+                  child: Image.file(
+                    File(widget.imgPath),
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
-            ),
-            FabDialer(_fabMiniMenuItemList, Colors.teal, const Icon(Icons.add)),
-          ],
+              FabDialer(
+                  _fabMiniMenuItemList, Colors.teal, const Icon(Icons.add)),
+            ],
+          ),
         ),
       ),
     );

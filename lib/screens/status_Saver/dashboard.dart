@@ -12,11 +12,13 @@ class Dashboard extends StatefulWidget {
 class DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        ImageScreen(),
-        VideoScreen(),
-      ],
+    return SafeArea(
+      child: Column(
+        children: [
+          ImageScreen(),
+          VideoScreen(),
+        ],
+      ),
     );
   }
 }

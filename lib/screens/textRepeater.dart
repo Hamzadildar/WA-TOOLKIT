@@ -1,3 +1,5 @@
+import 'package:flutter_native_admob/flutter_native_admob.dart';
+import 'package:flutter_native_admob/native_admob_controller.dart';
 import 'package:fluttercontactpicker/fluttercontactpicker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +15,24 @@ class TextRepeater extends StatefulWidget {
 }
 
 class _TextRepeaterState extends State<TextRepeater> {
+  static const _adUnitID = "ca-app-pub-3940256099942544/8135179316";
+
+  final _nativeAdController = NativeAdmobController();
+
+  Widget adsContainer() {
+    return Container(
+      //You Can Set Container Height
+      height: 200,
+      child: NativeAdmob(
+        // Your ad unit id
+        adUnitID: _adUnitID,
+        controller: _nativeAdController,
+        type: NativeAdmobType.full,
+        error: CupertinoActivityIndicator(),
+      ),
+    );
+  }
+
   TextEditingController field = TextEditingController();
   List<String> textList = [];
   String pasteValue = '';
@@ -406,6 +426,10 @@ class _TextRepeaterState extends State<TextRepeater> {
                 SelectableText(checkedValue == true
                     ? "${textList.join("\n")}"
                     : "${textList.join(",")}"),
+                Container(
+                  margin: EdgeInsets.only(bottom: 20.0),
+                  child: adsContainer(),
+                ),
               ],
             ),
           ),

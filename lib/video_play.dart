@@ -163,9 +163,11 @@ class _PlayStatusState extends State<PlayStatus> {
         looping: true,
         videoSrc: widget.videoFile,
       ),
-      // ),
-      floatingActionButton:
-          FabDialer(_fabMiniMenuItemList, Colors.teal, const Icon(Icons.add)),
+      floatingActionButton: FabDialer(
+        _fabMiniMenuItemList,
+        Colors.teal,
+        const Icon(Icons.add),
+      ),
     );
   }
 }

@@ -43,6 +43,10 @@ dependencies:
   progressive_image: ^1.0.1
   share: ^2.0.1
   rate_my_app: ^1.1.0+1
+  admob_flutter: ^1.0.1
+  flutter_native_admob: ^2.1.0
+  provider: ^5.0.0
+
 
 
 
