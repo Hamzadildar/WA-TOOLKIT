@@ -204,7 +204,7 @@ String getBannerAdUnitId() {
   if (Platform.isIOS) {
     return '';
   } else if (Platform.isAndroid) {
-    return 'ca-app-pub-2720281578973321/2028477289';
+    return 'ca-app-pub-2720281578973321/9523823928';
   } //ca-app-pub-3940256099942544/6300978111
   return null;
 }

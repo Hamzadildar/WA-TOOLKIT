@@ -15,10 +15,12 @@ class BulkSMS extends StatefulWidget {
 class _BulkSMSState extends State<BulkSMS> {
   int counter = 0;
   String msg;
+  String no;
+  String code = 92.toString();
   int textSize = 0;
   List<String> recipents = [];
 
-  static const _adUnitID = "ca-app-pub-3940256099942544/8135179316";
+  static const _adUnitID = "ca-app-pub-2720281578973321/1645340072";
 
   final _nativeAdController = NativeAdmobController();
 
@@ -133,9 +135,20 @@ class _BulkSMSState extends State<BulkSMS> {
                                           .pickFullContact();
                                   setState(() {
                                     if (contact.phones[0].number != null) {
-                                      recipents.add(
-                                          contact.phones[0].number.toString());
-                                      print(recipents);
+                                      if (contact.phones[0].number
+                                              .startsWith('0') ==
+                                          true) {
+                                        recipents.add(contact.phones[0].number
+                                                .substring(1, 1) +
+                                            '92' +
+                                            contact.phones[0].number
+                                                .substring(1)
+                                                .toString());
+                                      } else {
+                                        recipents.add(contact.phones[0].number
+                                            .toString());
+                                        no = recipents[0];
+                                      }
                                     } else {}
                                   });
                                 }
@@ -230,7 +243,7 @@ class _BulkSMSState extends State<BulkSMS> {
                           onPressed: () {
                             for (int i = 0; i < recipents.length; i++) {
                               String no = recipents[i];
-                              print(recipents[i]);
+
                               _bulksms(msg: msg, recipents: no);
                             }
                           },

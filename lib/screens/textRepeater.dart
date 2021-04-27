@@ -5,7 +5,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:tech_vision/screens/home%20screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class TextRepeater extends StatefulWidget {
@@ -15,7 +14,8 @@ class TextRepeater extends StatefulWidget {
 }
 
 class _TextRepeaterState extends State<TextRepeater> {
-  static const _adUnitID = "ca-app-pub-3940256099942544/8135179316";
+  String whatsAppNumber;
+  static const _adUnitID = "ca-app-pub-2720281578973321/9332258402";
 
   final _nativeAdController = NativeAdmobController();
 
@@ -39,7 +39,6 @@ class _TextRepeaterState extends State<TextRepeater> {
   int counter = 0;
   String text;
   bool checkedValue = false;
-  List<String> recipents = [];
   showAlertDialog(BuildContext context) {
     // set up the button
     Widget okButton = FlatButton(
@@ -74,6 +73,7 @@ class _TextRepeaterState extends State<TextRepeater> {
 
   @override
   Widget build(BuildContext context) {
+    String number;
     void _launchWatsapp({@required number, @required msg}) async {
       String url = "whatsapp://send?phone=$whatsAppNumber&text=$msg";
 
@@ -119,8 +119,19 @@ class _TextRepeaterState extends State<TextRepeater> {
                                   await FlutterContactPicker.pickFullContact();
                               setState(() {
                                 if (contact.phones[0].number != null) {
-                                  recipents.add(contact.phones[0].number);
-                                  whatsAppNumber = contact.phones[0].toString();
+                                  if (contact.phones[0].number
+                                          .startsWith('0') ==
+                                      true) {
+                                    whatsAppNumber = contact.phones[0].number
+                                            .substring(1, 1) +
+                                        '+92' +
+                                        contact.phones[0].number
+                                            .substring(1)
+                                            .toString();
+                                  } else {
+                                    whatsAppNumber =
+                                        contact.phones[0].number.toString();
+                                  }
                                 } else {}
                               });
                             }
@@ -144,8 +155,8 @@ class _TextRepeaterState extends State<TextRepeater> {
                         child: TextField(
                           enabled: false,
                           decoration: InputDecoration(
-                            hintText: recipents != null
-                                ? '${recipents.join('')}'
+                            hintText: whatsAppNumber != null
+                                ? '${whatsAppNumber}'
                                 : null,
                             fillColor: Colors.white60,
                             hintStyle: TextStyle(

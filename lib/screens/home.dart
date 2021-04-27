@@ -29,7 +29,7 @@ class _MainScreenState extends State<MainScreen> {
   AdmobInterstitial interstitialAd;
   AdmobReward rewardAd;
 
-  static const _adUnitID = "ca-app-pub-2720281578973321/4654646792";
+  static const _adUnitID = "";
 
   final _nativeAdController = NativeAdmobController();
   RateMyApp _rateApp = RateMyApp(
@@ -490,7 +490,7 @@ String getBannerAdUnitId() {
   if (Platform.isIOS) {
     return '';
   } else if (Platform.isAndroid) {
-    return 'ca-app-pub-2720281578973321/2028477289';
+    return 'ca-app-pub-2720281578973321/5776150604';
   } //ca-app-pub-3940256099942544/6300978111
   return null;
 }

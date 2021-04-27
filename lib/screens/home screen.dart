@@ -40,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
   AdmobInterstitial interstitialAd;
   AdmobReward rewardAd;
 
-  static const _adUnitID = "ca-app-pub-2720281578973321/5776156777";
+  static const _adUnitID = "ca-app-pub-2720281578973321/1262196699";
 
   final _nativeAdController = NativeAdmobController();
 
@@ -925,7 +925,7 @@ String getBannerAdUnitId() {
   if (Platform.isIOS) {
     return 'ca-app-pub-3940256099942544/2934735716';
   } else if (Platform.isAndroid) {
-    return 'ca-app-pub-2720281578973321/9523823928';
+    return 'ca-app-pub-2720281578973321/2028477289';
   } //ca-app-pub-3940256099942544/6300978111
   return null;
 }

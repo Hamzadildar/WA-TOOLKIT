@@ -1,8 +1,10 @@
 import 'package:country_code_picker/country_code_picker.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_native_admob/flutter_native_admob.dart';
+import 'package:flutter_native_admob/native_admob_controller.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'home screen.dart';
-import 'package:tech_vision/ads.dart';
 
 class DirectChat extends StatefulWidget {
   static String id = 'direct_chat';
@@ -21,6 +23,23 @@ void _launchWatsapp({@required number, @required msg}) async {
 String phoneNumber = "";
 
 class _DirectChatState extends State<DirectChat> {
+  static const _adUnitID = "ca-app-pub-2720281578973321/8210748426";
+  final _nativeAdController = NativeAdmobController();
+
+  Widget adsContainer() {
+    return Container(
+      //You Can Set Container Height
+      height: 200,
+      child: NativeAdmob(
+        // Your ad unit id
+        adUnitID: _adUnitID,
+        controller: _nativeAdController,
+        type: NativeAdmobType.full,
+        error: CupertinoActivityIndicator(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(

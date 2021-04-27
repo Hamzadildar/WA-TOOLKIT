@@ -11,7 +11,7 @@ AdmobBannerSize bannerSize;
 AdmobInterstitial interstitialAd;
 AdmobReward rewardAd;
 
-const _adUnitID = "ca-app-pub-3940256099942544/8135179316";
+const _adUnitID = "";
 
 final _nativeAdController = NativeAdmobController();
 

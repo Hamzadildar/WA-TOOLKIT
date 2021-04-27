@@ -9,9 +9,7 @@ import 'package:tech_vision/screens/bulkSMS.dart';
 import 'package:tech_vision/screens/textRepeater.dart';
 import 'package:tech_vision/screens/splash.dart';
 import 'package:admob_flutter/admob_flutter.dart';
-import 'dart:io';
 
-const String testDevice = 'Mobile_id';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   // final initFuture = MobileAds.instance.initialize();
